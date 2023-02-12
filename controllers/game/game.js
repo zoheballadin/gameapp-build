@@ -60,7 +60,9 @@ router.post(
         contactInfo,
         owner,
       });
-      await game.save().catch((err) => console.log(err));
+      await game.save().catch((err) => {
+        return res.status(200).json({err})
+      });
       return res.status(200).json({ message: "Game added successfully" });
     } catch (error) {
       console.log(error);
