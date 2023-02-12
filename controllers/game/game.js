@@ -33,7 +33,7 @@ router.post(
   errorMiddleware,
   async (req, res) => {
     try {
-      return res.status(200).json({error: "Hello"})
+      
       if (!req.file) {
         return res.status(400).json({ error: "Image is required" });
       }
@@ -61,13 +61,14 @@ router.post(
         contactInfo,
         owner,
       });
+      // return res.status(200).json({error: "Hello"})x
       await game.save().catch((err) => {
         return res.status(200).json({err})
       });
       return res.status(200).json({ message: "Game added successfully" });
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ err });
+      return res.status(500).json({ error });
     }
   }
 );
