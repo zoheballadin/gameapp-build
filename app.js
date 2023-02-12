@@ -17,12 +17,14 @@ const port = 5001;
 
 await connectDB(process.env.MONGO_STRING).catch(err => console.log(err))
 
+app.use("/api/images", express.static(path.join(__dirname, 'assets')))
+
 app.use(express.json())
 app.use("/api/user", userRoutes)
 app.use("/api/games", gameRoutes)
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.use("/api/images", express.static("assets"))
+// app.use("/api/images", express.static("assets"))
 
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
