@@ -33,6 +33,7 @@ router.post(
   errorMiddleware,
   async (req, res) => {
     try {
+      return res.status(200).json({error: "Hello"})
       if (!req.file) {
         return res.status(400).json({ error: "Image is required" });
       }
